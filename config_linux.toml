@@ -2,10 +2,19 @@
 compiler = "gcc"
 
 [[targets]]
-name = "main"
-src = "./"
-include_dir = "./"
-type = "exe"
+name = "libaes"
+src = "src/"
+include_dir = "src/include/"
+type = "dll"
 cflags = "-g -Wall"
 libs = ""
 deps = [""]
+
+[[targets]]
+name = "main"
+src = "example/"
+include_dir = "src/include/"
+type = "exe"
+cflags = "-g -Wall"
+libs = ""
+deps = ["libaes"]

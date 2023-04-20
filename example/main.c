@@ -6,8 +6,7 @@
  * Based on the document FIPS PUB 197
  */
 #include <stdio.h>
-
-#include "aes.h"
+#include <aes.h>
 
 int main() {
 
