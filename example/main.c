@@ -6,7 +6,8 @@
  * Based on the document FIPS PUB 197
  */
 #include <stdio.h>
-#include <aes.h>
+#define AES_IMPLEMENTATION
+#include "aes.h"
 
 int main() {
 
