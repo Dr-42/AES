@@ -19,8 +19,6 @@ extern uint8_t gmult_aes[];
  * 
  * NOTE: we are using the look up table instead of the (slower) gmult function
  */
-
-
 #define gmult(a,b) gmult_aes[256*a + b]
 uint8_t *aes_init(size_t key_size);
 void aes_key_expansion(uint8_t *key, uint8_t *w);
@@ -681,6 +679,13 @@ uint8_t *aes_init(size_t key_size) {
 }
 
 /*
+ * Free memory allocated for expanded key
+ */
+void aes_free(uint8_t *w) {
+	free(w);
+}
+
+/*
  * Performs the AES cipher operation
  */
 void aes_cipher(uint8_t *in, uint8_t *out, uint8_t *w) {
@@ -749,39 +754,3 @@ void aes_inv_cipher(uint8_t *in, uint8_t *out, uint8_t *w) {
 }
 #endif
 #endif
-
-// ----------------------------------------------------------------- 
-// Copyright 2023 Dr. Spandan Roy
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-// 
-// This Repo is a fork of https://github.com/Dr-42/AES
-// 
-// Here is its original LICENSE
-// MIT License
-// 
-// Copyright (c) 2019 Dani Huertas
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//
-// -----------------------------------------------------------------
